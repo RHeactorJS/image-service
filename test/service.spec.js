@@ -1,4 +1,4 @@
-/* global Buffer, describe, it */
+/* global Buffer describe it process beforeEach */
 
 import {expect} from 'chai'
 import {handler} from '../src'
@@ -8,6 +8,9 @@ import {Index, Status} from '@rheactorjs/models'
 const contentType = 'application/vnd.rheactorjs.image-service.v1+json'
 
 describe('service', () => {
+  beforeEach(function () {
+    if (!process.env.AWS_ACCESS_KEY_ID) this.skip('AWS_ACCESS_KEY_ID is not set!')
+  })
   describe('/index', () => {
     it('should return the list of operations', done => {
       handler({
@@ -52,7 +55,11 @@ describe('service', () => {
     it('should scale and upload a JPEG image', done => {
       const imageData = Buffer.from(fs.readFileSync('./test/data/d4d4d4.jpg')).toString('base64')
       const privateKey = fs.readFileSync('./test/data/private.key', 'utf-8')
-      const token = jwt.sign({}, privateKey, {algorithm: 'RS256', subject: 'https://example.com/user/5', expiresIn: 60 * 60})
+      const token = jwt.sign({}, privateKey, {
+        algorithm: 'RS256',
+        subject: 'https://example.com/user/5',
+        expiresIn: 60 * 60
+      })
 
       const event = {
         body: `{"$context":"https://github.com/RHeactorJS/image-service#Upload","image":"${imageData}","mimeType":"image/jpeg"}`,

@@ -65,14 +65,16 @@ S3_CFG := /tmp/.s3cfg-$(S3_BUCKET)
 HOSTNAME := $(shell hostname)
 
 test-prepare:
-	# Create s3cmd config
-	@echo $(S3_CFG)
-	@echo "[default]" > $(S3_CFG)
-	@echo "access_key = $(AWS_ACCESS_KEY_ID)" >> $(S3_CFG)
-	@echo "secret_key = $(AWS_SECRET_ACCESS_KEY)" >> $(S3_CFG)
-	@echo "bucket_location = $(AWS_REGION)" >> $(S3_CFG)
-
-	s3cmd -c $(S3_CFG) put -P -M --no-mime-magic ./test/data/public.key s3://$(S3_BUCKET)/$(HOSTNAME)-test.key
+	@if [ "${AWS_ACCESS_KEY_ID}" != "" ]; then \
+		# Create s3cmd config; \
+		@echo $(S3_CFG); \
+		@echo "[default]" > $(S3_CFG); \
+		@echo "access_key = $(AWS_ACCESS_KEY_ID)" >> $(S3_CFG); \
+		@echo "secret_key = $(AWS_SECRET_ACCESS_KEY)" >> $(S3_CFG); \
+		@echo "bucket_location = $(AWS_REGION)" >> $(S3_CFG); \
+ 		\
+		s3cmd -c $(S3_CFG) put -P -M --no-mime-magic ./test/data/public.key s3://$(S3_BUCKET)/$(HOSTNAME)-test.key; \
+	fi
 
 test: test-prepare ## Prepare and run the tests
 	npm run test:coverage-travis
