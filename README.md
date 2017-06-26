@@ -33,7 +33,7 @@ It takes JPEG or PNG images that are uploaded base64 encoded, crops and resizes 
 Users need to provide an [JsonWebToken](https://jwt.io/) which is checked against the configured public key.
 
     POST /upload
-    Content-Type: application/vnd.resourceful-humans.image-service.v1+json
+    Content-Type: application/vnd.rheactorjs.image-service.v1+json
     Authorization: Bearer <token>
     
     {
@@ -44,7 +44,7 @@ Users need to provide an [JsonWebToken](https://jwt.io/) which is checked agains
 
 ## Response
 
-    Content-Type: application/vnd.resourceful-humans.image-service.v1+json
+    Content-Type: application/vnd.rheactorjs.image-service.v1+json
     
     {
       "$context":"https://github.com/RHeactorJS/image-service#UploadResult",

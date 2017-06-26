@@ -8,7 +8,7 @@ import AWS from 'aws-sdk'
 import Promise from 'bluebird'
 
 const mountURL = new URIValue(process.env.MOUNT_URL)
-const contentType = 'application/vnd.resourceful-humans.image-service.v1+json'
+const contentType = 'application/vnd.rheactorjs.image-service.v1+json'
 const version = process.env.VERSION
 const environment = process.env.NODE_ENV
 const deployTime = process.env.DEPLOY_TIME

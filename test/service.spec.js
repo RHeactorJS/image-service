@@ -5,7 +5,7 @@ import {handler} from '../src'
 import fs from 'fs'
 import jwt from 'jsonwebtoken'
 import {Index, Status} from 'models'
-const contentType = 'application/vnd.resourceful-humans.image-service.v1+json'
+const contentType = 'application/vnd.rheactorjs.image-service.v1+json'
 
 describe('service', () => {
   describe('/index', () => {
