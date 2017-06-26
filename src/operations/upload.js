@@ -1,14 +1,14 @@
 /* global Buffer */
 
 import {Object as ObjectType, String as StringType, struct, refinement} from 'tcomb'
-import {URIValue, URIValueType} from 'rheactor-value-objects'
-import {HttpProblem} from 'rheactor-models'
+import {URIValue, URIValueType} from 'value-objects'
+import {HttpProblem} from 'models'
 import Promise from 'bluebird'
 import v4 from 'uuid'
 import gm from 'gm'
 const im = gm.subClass({imageMagick: true})
-const $context = new URIValue('https://github.com/ResourcefulHumans/rheactor-image-service#Upload')
-const $contextResult = new URIValue('https://github.com/ResourcefulHumans/rheactor-image-service#UploadResult')
+const $context = new URIValue('https://github.com/RHeactorJS/image-service#Upload')
+const $contextResult = new URIValue('https://github.com/RHeactorJS/image-service#UploadResult')
 const AllowedMimeType = refinement(StringType, s => s === 'image/jpeg' || s === 'image/png', 'AllowedMimeType')
 
 /**
@@ -48,7 +48,7 @@ const upload = (s3, bucket, webLocation, body, parts, token) => {
     })
     .catch(/TypeError/, err => {
       throw new HttpProblem(
-        new URIValue('https://github.com/ResourcefulHumans/rheactor-image-service#ValidationFailed'),
+        new URIValue('https://github.com/RHeactorJS/image-service#ValidationFailed'),
         err.toString(),
         400
       )

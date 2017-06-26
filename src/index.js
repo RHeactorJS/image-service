@@ -1,14 +1,14 @@
 /* global process */
 
-import {handler as awsLambdaHandler, apiIndexOperation, statusOperation} from '@resourcefulhumans/rheactor-aws-lambda'
+import {handler as awsLambdaHandler, apiIndexOperation, statusOperation} from '@rheactorjs/aws-lambda'
 import {uploadOperation, Upload} from './operations/upload'
-import {Status, Link, Index} from 'rheactor-models'
-import {URIValue} from 'rheactor-value-objects'
+import {Status, Link, Index} from 'models'
+import {URIValue} from 'value-objects'
 import AWS from 'aws-sdk'
 import Promise from 'bluebird'
 
 const mountURL = new URIValue(process.env.MOUNT_URL)
-const contentType = 'application/vnd.resourceful-humans.rheactor-image-service.v1+json'
+const contentType = 'application/vnd.resourceful-humans.image-service.v1+json'
 const version = process.env.VERSION
 const environment = process.env.NODE_ENV
 const deployTime = process.env.DEPLOY_TIME

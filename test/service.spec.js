@@ -4,8 +4,8 @@ import {expect} from 'chai'
 import {handler} from '../src'
 import fs from 'fs'
 import jwt from 'jsonwebtoken'
-import {Index, Status} from 'rheactor-models'
-const contentType = 'application/vnd.resourceful-humans.rheactor-image-service.v1+json'
+import {Index, Status} from 'models'
+const contentType = 'application/vnd.resourceful-humans.image-service.v1+json'
 
 describe('service', () => {
   describe('/index', () => {
@@ -55,7 +55,7 @@ describe('service', () => {
       const token = jwt.sign({}, privateKey, {algorithm: 'RS256', subject: 'https://example.com/user/5', expiresIn: 60 * 60})
 
       const event = {
-        body: `{"$context":"https://github.com/ResourcefulHumans/rheactor-image-service#Upload","image":"${imageData}","mimeType":"image/jpeg"}`,
+        body: `{"$context":"https://github.com/RHeactorJS/image-service#Upload","image":"${imageData}","mimeType":"image/jpeg"}`,
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': contentType
@@ -69,7 +69,7 @@ describe('service', () => {
         expect(response.statusCode).to.equal(200)
         expect(response.headers['Content-Type']).to.equal(contentType)
         const b = JSON.parse(response.body)
-        expect(b.$context).to.equal('https://github.com/ResourcefulHumans/rheactor-image-service#UploadResult')
+        expect(b.$context).to.equal('https://github.com/RHeactorJS/image-service#UploadResult')
         expect(b.url).to.match(/^http:\/\/images\.example\.com\/example-com\/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}-user-5.jpg/)
         expect(b.mimeType).to.equal('image/jpeg')
         done()

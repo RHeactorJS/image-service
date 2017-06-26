@@ -2,7 +2,7 @@
 .PHONY: help deploy update-lambda-function update-lambda-env update-env-vars delete clean update test test-prepare
 
 AWS_REGION ?= "eu-central-1"
-AWS_FUNCTION_NAME ?= "rheactor-image-service"
+AWS_FUNCTION_NAME ?= "image-service"
 NODE_ENV ?= "production"
 VERSION ?= $(shell /usr/bin/env node -e "console.log(require('./package.json').version);")
 
@@ -45,7 +45,7 @@ update-env-vars: guard-NODE_ENV guard-VERSION
 delete: ## Deploy from AWS lambda
 	aws lambda delete-function --region $(AWS_REGION) --function-name $(AWS_FUNCTION_NAME)
 
-TRAVIS_REPO_SLUG ?= "ResourcefulHumans/rheactor-image-service"
+TRAVIS_REPO_SLUG ?= "RHeactorJS/image-service"
 
 update: guard-NODE_ENV ## Update the lambda
 ifeq "${VERSION}" "0.0.0-development"
@@ -60,7 +60,7 @@ endif
 
 # Tests
 
-S3_BUCKET ?= rheactor-image-service
+S3_BUCKET ?= image-service
 S3_CFG := /tmp/.s3cfg-$(S3_BUCKET)
 HOSTNAME := $(shell hostname)
 
