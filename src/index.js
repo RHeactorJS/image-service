@@ -2,8 +2,8 @@
 
 import {handler as awsLambdaHandler, apiIndexOperation, statusOperation} from '@rheactorjs/aws-lambda'
 import {uploadOperation, Upload} from './operations/upload'
-import {Status, Link, Index} from 'models'
-import {URIValue} from 'value-objects'
+import {Status, Link, Index} from '@rheactorjs/models'
+import {URIValue} from '@rheactorjs/value-objects'
 import AWS from 'aws-sdk'
 import Promise from 'bluebird'
 

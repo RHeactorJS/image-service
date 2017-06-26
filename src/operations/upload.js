@@ -1,8 +1,8 @@
 /* global Buffer */
 
 import {Object as ObjectType, String as StringType, struct, refinement} from 'tcomb'
-import {URIValue, URIValueType} from 'value-objects'
-import {HttpProblem} from 'models'
+import {URIValue, URIValueType} from '@rheactorjs/value-objects'
+import {HttpProblem} from '@rheactorjs/models'
 import Promise from 'bluebird'
 import v4 from 'uuid'
 import gm from 'gm'

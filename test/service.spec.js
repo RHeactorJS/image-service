@@ -4,7 +4,7 @@ import {expect} from 'chai'
 import {handler} from '../src'
 import fs from 'fs'
 import jwt from 'jsonwebtoken'
-import {Index, Status} from 'models'
+import {Index, Status} from '@rheactorjs/models'
 const contentType = 'application/vnd.rheactorjs.image-service.v1+json'
 
 describe('service', () => {
