@@ -22,7 +22,7 @@ deploy: archive.zip guard-AWS_ROLE  ## Deploy to AWS lambda
 	--role $(AWS_ROLE) \
 	--timeout 60 \
 	--handler index.handler \
-	--runtime nodejs4.3
+	--runtime nodejs6.10
 
 update-lambda-function: archive.zip guard-AWS_REGION guard-AWS_FUNCTION_NAME ## Update the lambda function with new build
 	aws lambda update-function-code \
