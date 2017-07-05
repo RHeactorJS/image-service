@@ -1,10 +1,11 @@
 .DEFAULT_GOAL := help
 .PHONY: help deploy update-lambda-function update-lambda-env update-env-vars delete clean update test test-prepare
 
-AWS_REGION ?= "eu-central-1"
-AWS_FUNCTION_NAME ?= "image-service"
+AWS_REGION ?= eu-central-1
+AWS_FUNCTION_NAME ?= rheactorjs-image-service
+AWS_ROLE ?= rheactorjs-image-service
 NODE_ENV ?= "production"
-VERSION ?= $(shell /usr/bin/env node -e "console.log(require('./package.json').version);")
+VERSION ?= $(shell npm view @rheactorjs/image-service version)
 
 archive.zip: src/*.js src/**/*.js package.json
 	rm -f $@
@@ -14,17 +15,17 @@ archive.zip: src/*.js src/**/*.js package.json
 	cd build; npm install --production > /dev/null
 	cd build; zip -r -q ../$@ ./
 
-deploy: archive.zip guard-AWS_ROLE  ## Deploy to AWS lambda
+deploy: archive.zip guard-AWS_ACCOUNT  ## Deploy to AWS lambda
 	aws lambda create-function \
 	--region $(AWS_REGION) \
 	--function-name $(AWS_FUNCTION_NAME) \
 	--zip-file fileb://$< \
-	--role $(AWS_ROLE) \
+	--role arn:aws:iam::$(AWS_ACCOUNT):role/$(AWS_ROLE) \
 	--timeout 60 \
 	--handler index.handler \
 	--runtime nodejs6.10
 
-update-lambda-function: archive.zip guard-AWS_REGION guard-AWS_FUNCTION_NAME ## Update the lambda function with new build
+update-lambda-function: archive.zip guard-AWS_REGION ## Update the lambda function with new build
 	aws lambda update-function-code \
 	--region $(AWS_REGION) \
 	--function-name $(AWS_FUNCTION_NAME) \
@@ -60,7 +61,7 @@ endif
 
 # Tests
 
-S3_BUCKET ?= image-service
+S3_BUCKET ?= rheactorjs-image-service
 S3_CFG := /tmp/.s3cfg-$(S3_BUCKET)
 HOSTNAME := $(shell hostname)
 

@@ -55,7 +55,19 @@ Users need to provide an [JsonWebToken](https://jwt.io/) which is checked agains
 This implementation expects token's `sub` to be an URL, which will be used to prefix and suffix URLs. 
 A `sub` value of `https://example.com/user/5` was used in the example above.
 
-## Configuration
+## Setup
+
+    npm install
+    
+    # Configure these environment variables
+    AWS_ACCOUNT=…
+    AWS_ACCESS_KEY_ID=…
+    AWS_SECRET_ACCESS_KEY=…
+    
+    # install this as a new lambda function
+    make deploy
+
+### Configuration
 
 These environment variables need to be set on the lambda function:
 
@@ -66,22 +78,13 @@ These environment variables need to be set on the lambda function:
  - `MOUNT_URL`  
    Public endpoint for the lamba function (as provided by API Gateway)
  - `WEB_LOCATION`  
-   Public URL for the bucket
+   Public HTTPs URL for the bucket
  - `PUBLIC_KEY_FILE`  
    Public key file in the bucket to be used for verifying tokens
 
-## Setup
+### API Gateway
 
-    npm install
-    
-    # Configure these environment variables
-    AWS_ROLE=…
-    AWS_ACCESS_KEY_ID=…
-    AWS_SECRET_ACCESS_KEY=…
-    AWS_REGION=…
-    AWS_FUNCTION_NAME=…
-    NODE_ENV=…
-    VERSION=…
-    
-    # install this as a new lambda function
-    make install
+Now configure API Gateway for the lambda:
+
+ - Configure it as [proxy resource](https://docs.aws.amazon.com/console/apigateway/proxy-resource)
+ - and enable *API Gateway CORS*
