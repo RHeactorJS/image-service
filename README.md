@@ -88,3 +88,5 @@ Now configure API Gateway for the lambda:
 
  - Configure it as [proxy resource](https://docs.aws.amazon.com/console/apigateway/proxy-resource)
  - and enable *API Gateway CORS*
+
+In the Integration response for the `OPTIONS` request, add `Content-Length` to the `Access-Control-Allow-Headers` list.
