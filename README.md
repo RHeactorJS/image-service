@@ -81,12 +81,3 @@ These environment variables need to be set on the lambda function:
    Public HTTPs URL for the bucket
  - `PUBLIC_KEY_FILE`  
    Public key file in the bucket to be used for verifying tokens
-
-### API Gateway
-
-Now configure API Gateway for the lambda:
-
- - Configure it as [proxy resource](https://docs.aws.amazon.com/console/apigateway/proxy-resource)
- - and enable *API Gateway CORS*
-
-In the Integration response for the `OPTIONS` request, add `Content-Length` to the `Access-Control-Allow-Headers` list.

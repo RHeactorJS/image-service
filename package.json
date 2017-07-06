@@ -30,11 +30,11 @@
   },
   "homepage": "https://github.com/RHeactorJS/image-service#readme",
   "dependencies": {
-    "@rheactorjs/aws-lambda": "1.x",
+    "@rheactorjs/aws-lambda": "^1.1.1",
     "@rheactorjs/errors": "1.x",
     "@rheactorjs/models": "^2.0.1",
     "@rheactorjs/value-objects": "^1.0.2",
-    "aws-sdk": "^2.41.0",
+    "aws-sdk": "^2.81.0",
     "bluebird": "^3.4.7",
     "gm": "^1.23.0",
     "jsonwebtoken": "^7.3.0",
