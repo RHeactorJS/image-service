@@ -1,4 +1,6 @@
 # image-service
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/RHeactorJS/image-service.svg)](https://greenkeeper.io/)
   
 [![npm version](https://img.shields.io/npm/v/@rheactorjs/image-service.svg)](https://www.npmjs.com/package/@rheactorjs/image-service)
 [![Build Status](https://travis-ci.org/RHeactorJS/image-service.svg?branch=master)](https://travis-ci.org/RHeactorJS/image-service)
