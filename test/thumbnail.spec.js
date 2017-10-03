@@ -1,6 +1,5 @@
-/* global describe, it */
+/* global describe it expect */
 
-import {expect} from 'chai'
 import {thumbnail} from '../src/operations/upload'
 import fs from 'fs'
 import gm from 'gm'
@@ -16,9 +15,9 @@ const validateThumbnail = (image, done) => {
       img.identifyAsync()
     )
     .spread((size, info) => {
-      expect(size.width).to.equal(256)
-      expect(size.height).to.equal(256)
-      expect(info.format).to.equal('JPEG')
+      expect(size.width).toEqual(256)
+      expect(size.height).toEqual(256)
+      expect(info.format).toEqual('JPEG')
       done()
     })
 }

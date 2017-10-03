@@ -1,10 +1,10 @@
-/* global Buffer describe it process beforeEach */
+/* global Buffer describe it process beforeEach expect */
 
-import {expect} from 'chai'
 import {handler} from '../src'
 import fs from 'fs'
 import jwt from 'jsonwebtoken'
 import {Index, Status} from '@rheactorjs/models'
+
 const contentType = 'application/vnd.rheactorjs.image-service.v1+json'
 
 describe('service', () => {
@@ -20,12 +20,12 @@ describe('service', () => {
         },
         path: '/index'
       }, null, (err, res) => {
-        expect(err).to.equal(null)
-        expect(res.statusCode).to.equal(200)
-        expect(res.headers['Content-Type']).to.equal(contentType)
+        expect(err).toEqual(null)
+        expect(res.statusCode).toEqual(200)
+        expect(res.headers['Content-Type']).toEqual(contentType)
         const index = Index.fromJSON(JSON.parse(res.body))
-        expect(index.$links.length, 'Index should have 2 links').to.equal(2)
-        expect(index.$links.filter(({subject}) => subject.equals(Status.$context)).length, 'Index should link to Status').to.equal(1)
+        expect(index.$links).toHaveLength(2) // Index should have 2 links
+        expect(index.$links.filter(({subject}) => subject.equals(Status.$context))).toHaveLength(1) // Index should link to Status
         done()
       })
     })
@@ -40,12 +40,12 @@ describe('service', () => {
         },
         path: '/status'
       }, null, (err, res) => {
-        expect(err).to.equal(null)
-        expect(res.statusCode).to.equal(200)
-        expect(res.headers['Content-Type']).to.equal(contentType)
+        expect(err).toEqual(null)
+        expect(res.statusCode).toEqual(200)
+        expect(res.headers['Content-Type']).toEqual(contentType)
         const status = Status.fromJSON(JSON.parse(res.body))
-        expect(status.status).to.equal('ok')
-        expect(status.version).to.match(/^0\.0\.0\+testing\.[0-9]+$/)
+        expect(status.status).toEqual('ok')
+        expect(status.version).toMatch(/^0\.0\.0\+testing\.[0-9]+$/)
         done()
       })
     })
@@ -72,13 +72,13 @@ describe('service', () => {
       }
 
       handler(event, undefined, (err, response) => {
-        expect(err).to.equal(null)
-        expect(response.statusCode).to.equal(200)
-        expect(response.headers['Content-Type']).to.equal(contentType)
+        expect(err).toEqual(null)
+        expect(response.statusCode).toEqual(200)
+        expect(response.headers['Content-Type']).toEqual(contentType)
         const b = JSON.parse(response.body)
-        expect(b.$context).to.equal('https://github.com/RHeactorJS/image-service#UploadResult')
-        expect(b.url).to.match(/^http:\/\/images\.example\.com\/example-com\/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}-user-5.jpg/)
-        expect(b.mimeType).to.equal('image/jpeg')
+        expect(b.$context).toEqual('https://github.com/RHeactorJS/image-service#UploadResult')
+        expect(b.url).toMatch(/^http:\/\/images\.example\.com\/example-com\/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}-user-5.jpg/)
+        expect(b.mimeType).toEqual('image/jpeg')
         done()
       })
     })
@@ -93,8 +93,8 @@ describe('service', () => {
         path: '/upload'
       }
       handler(event, undefined, (err, response) => {
-        expect(err).to.equal(null)
-        expect(response.statusCode).to.equal(400)
+        expect(err).toEqual(null)
+        expect(response.statusCode).toEqual(400)
         done()
       })
     })

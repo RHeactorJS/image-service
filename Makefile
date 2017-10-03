@@ -4,7 +4,7 @@
 AWS_REGION ?= eu-central-1
 AWS_FUNCTION_NAME ?= rheactorjs-image-service
 AWS_ROLE ?= rheactorjs-image-service
-NODE_ENV ?= "production"
+NODE_ENV ?= production
 VERSION ?= $(shell npm view @rheactorjs/image-service version)
 
 archive.zip: src/*.js src/**/*.js package.json
@@ -46,7 +46,7 @@ update-env-vars: guard-NODE_ENV guard-VERSION
 delete: ## Deploy from AWS lambda
 	aws lambda delete-function --region $(AWS_REGION) --function-name $(AWS_FUNCTION_NAME)
 
-TRAVIS_REPO_SLUG ?= "RHeactorJS/image-service"
+TRAVIS_REPO_SLUG ?= RHeactorJS/image-service
 
 update: guard-NODE_ENV ## Update the lambda
 ifeq "${VERSION}" "0.0.0-development"
