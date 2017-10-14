@@ -1,6 +1,6 @@
 /* global describe it expect */
 
-import {thumbnail} from '../src/operations/upload'
+import {thumbnail} from '../../src/operations/upload'
 import fs from 'fs'
 import gm from 'gm'
 import Promise from 'bluebird'

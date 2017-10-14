@@ -1,6 +1,6 @@
-/* global Buffer describe it process beforeEach expect */
+/* global Buffer describe it process expect */
 
-import {handler} from '../src'
+import {handler} from '../../src/index'
 import fs from 'fs'
 import jwt from 'jsonwebtoken'
 import {Index, Status} from '@rheactorjs/models'
@@ -8,9 +8,6 @@ import {Index, Status} from '@rheactorjs/models'
 const contentType = 'application/vnd.rheactorjs.image-service.v1+json'
 
 describe('service', () => {
-  beforeEach(function () {
-    if (!process.env.AWS_ACCESS_KEY_ID) this.skip('AWS_ACCESS_KEY_ID is not set!')
-  })
   describe('/index', () => {
     it('should return the list of operations', done => {
       handler({

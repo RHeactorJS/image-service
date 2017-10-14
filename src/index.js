@@ -12,7 +12,7 @@ const contentType = 'application/vnd.rheactorjs.image-service.v1+json'
 const version = process.env.VERSION
 const environment = process.env.NODE_ENV
 const deployTime = process.env.DEPLOY_TIME
-const bucket = process.env.S3_BUCKET
+const bucket = process.env.S3_BUCKET || 'rheactorjs-image-service'
 const publicKeyFile = process.env.PUBLIC_KEY_FILE
 
 const s3 = new AWS.S3({

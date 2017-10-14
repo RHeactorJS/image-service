@@ -6,11 +6,11 @@
     "access": "public"
   },
   "scripts": {
-    "test": "NODE_ENV=testing VERSION=0.0.0 MOUNT_URL=http://example.com WEB_LOCATION=http://images.example.com S3_BUCKET=image-service PUBLIC_KEY_FILE=`hostname`-test.key DEPLOY_TIME=`date +%s` jest",
+    "test": "NODE_ENV=testing VERSION=0.0.0 MOUNT_URL=http://example.com WEB_LOCATION=http://images.example.com DEPLOY_TIME=`date +%s` jest test/unit",
     "test:coverage": "npm run test -- --coverage",
     "test:coverage-travis": "npm run test:coverage && codeclimate-test-reporter < ./coverage/lcov.info && rm -rf ./coverage",
     "lint": "standard",
-    "precommit": "npm run lint && make test-prepare && npm run test",
+    "precommit": "npm run lint && npm run test",
     "commitmsg": "commitlint -e",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
