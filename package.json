@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^4.0.0",
-    "@commitlint/config-angular": "^4.2.0",
+    "@commitlint/config-angular": "^5.0.0",
     "@rheactorjs/update-lambda-environment-config": "1.x",
     "aws-sdk": "^2.81.0",
     "babel-cli": "^6.24.1",
