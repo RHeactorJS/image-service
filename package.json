@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/RHeactorJS/image-service#readme",
   "dependencies": {
-    "@rheactorjs/aws-lambda": "^1.1.3",
+    "@rheactorjs/aws-lambda": "^1.1.4",
     "@rheactorjs/errors": "^1.0.2",
     "@rheactorjs/models": "^2.0.3",
     "@rheactorjs/value-objects": "^1.0.4",
@@ -41,10 +41,10 @@
     "uuid": "^3.0.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^5.2.0",
+    "@commitlint/cli": "^5.2.6",
     "@commitlint/config-angular": "^5.1.1",
     "@rheactorjs/update-lambda-environment-config": "1.x",
-    "aws-sdk": "^2.162.0",
+    "aws-sdk": "^2.173.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.3",
     "babel-preset-env": "^1.6.1",
