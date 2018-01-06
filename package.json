@@ -32,7 +32,7 @@
   "dependencies": {
     "@rheactorjs/aws-lambda": "^1.1.4",
     "@rheactorjs/errors": "^1.0.2",
-    "@rheactorjs/models": "^2.0.3",
+    "@rheactorjs/models": "^3.0.0",
     "@rheactorjs/value-objects": "^1.0.4",
     "bluebird": "^3.5.1",
     "gm": "^1.23.0",
