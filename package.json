@@ -41,7 +41,7 @@
     "uuid": "^3.2.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^6.1.2",
+    "@commitlint/cli": "^7.0.0",
     "@commitlint/config-angular": "^6.1.2",
     "@rheactorjs/update-lambda-environment-config": "1.x",
     "aws-sdk": "^2.202.0",
